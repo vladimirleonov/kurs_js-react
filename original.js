@@ -37,11 +37,33 @@
 
 // Код возьмите из предыдущего домашнего задания
 
+/* Задание на урок:
+
+1) Первую часть задания повторить по уроку
+
+2) Создать функцию showMyDB, которая будет проверять свойство privat. Если стоит в позиции
+false - выводит в консоль главный объект программы
+
+3) Создать функцию writeYourGenres в которой пользователь будет 3 раза отвечать на вопрос 
+"Ваш любимый жанр под номером ${номер по порядку}". Каждый ответ записывается в массив данных
+genres
+
+P.S. Функции вызывать не обязательно*/
+
+// Код возьмите из предыдущего домашнего задания
+
 'use strict';
-//1)
-const numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
-// console.log(numberOfFilms);
-//2)
+
+let numberOfFilms;
+
+function start() {
+    numberOfFilms = prompt('Сколько фильмов вы уже посмотрели?', '');
+    while (numberOfFilms == null || numberOfFilms == '' || isNaN(numberOfFilms)) {
+        numberOfFilms = prompt('Сколько фильмов вы уже посмотрели?', '');
+    }
+}
+start();
+
 let personalMovieDB = {
     count: numberOfFilms,
     movies: {},
@@ -49,56 +71,32 @@ let personalMovieDB = {
     genres: [],
     privat: false
 };
-//3)
-for (let i = 0; i < 2; i++) {
-    const lastOfFilm = prompt('Один из последних просмотренных фильмов?', '');
-    const markOfFilm = prompt('На сколько его оцените?', '');
-    if (lastOfFilm != null && markOfFilm != null && lastOfFilm != "" && markOfFilm != "" && lastOfFilm.length < 50) {
-        personalMovieDB.movies[lastOfFilm] = markOfFilm;
-    } else {
-        i--;
-        console.log('error');
+
+function rememberMyFilms() {
+    for (let i = 0; i < 2; i++) {
+        const lastOfFilm = prompt('Один из последних просмотренных фильмов?', '');
+        const markOfFilm = prompt('На сколько его оцените?', '');
+        if (lastOfFilm != null && markOfFilm != null && lastOfFilm != "" && markOfFilm != "" && lastOfFilm.length < 50) {
+            personalMovieDB.movies[lastOfFilm] = markOfFilm;
+        } else {
+            i--;
+            console.log('error');
+        }
     }
 }
+rememberMyFilms();
 
-// while
-
-//let i = 0;
-// while (i < 2) {
-//     const lastOfFilm = prompt('Один из последних просмотренных фильмов?', '');
-//     const markOfFilm = prompt('На сколько его оцените?', '');
-//     if (lastOfFilm != null && markOfFilm != null && lastOfFilm != '' && markOfFilm != '' && markOfFilm.length < 50) {
-//         personalMovieDB.movies[lastOfFilm] = markOfFilm;
-//     } else {
-//         i--;
-//     }
-//     i++;
-// }
-
-//do while
-
-// let i = 0;
-// do {
-//     const lastOfFilm = prompt('Один из последних просмотренных фильмов?', '');
-//     const markOfFilm = prompt('На сколько его оцените?', '');
-//     if (lastOfFilm != null && markOfFilm != null && lastOfFilm != '' && markOfFilm != '' && markOfFilm.length < 50) {
-//         personalMovieDB.movies[lastOfFilm] = markOfFilm;
-//     } else {
-//         i--;
-//     }
-//     i++;
-// } while (i < 2);
-
-
-if (personalMovieDB.count < 10) {
-    alert('Просмотрено довольно мало фильмов');
-} else if (personalMovieDB.count >= 10 && personalMovieDB.count <= 30) {
-    alert('Вы классический зритель');
-} else if (personalMovieDB.count > 30) {
-    alert('Вы киноман');
-} else {
-    alert('Произошла ошибка');
+function detectPersonalLevel() {
+    if (personalMovieDB.count < 10) {
+        alert('Просмотрено довольно мало фильмов');
+    } else if (personalMovieDB.count >= 10 && personalMovieDB.count <= 30) {
+        alert('Вы классический зритель');
+    } else if (personalMovieDB.count > 30) {
+        alert('Вы киноман');
+    } else {
+        alert('Произошла ошибка');
+    }
 }
-
+detectPersonalLevel();
 
 console.log(personalMovieDB);
