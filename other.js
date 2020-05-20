@@ -21,13 +21,7 @@ for (let key in options) {
    }
 }
 
-let arrayObj = Object.keys(options);
-let numberOfElements;
 
-for (let i = 1; i <= arrayObj.length; i++) {
-   numberOfElements = i;
-}
 
-console.log(numberOfElements);
-console.log(arrayObj);
+console.log((Object.keys(options)).length);
 console.log(options);
